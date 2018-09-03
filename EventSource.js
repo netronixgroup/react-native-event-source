@@ -101,9 +101,13 @@ var EventSource = function (url, options) {
         // don't need to poll again, because we're long-loading
         } else if (eventsource.readyState !== eventsource.CLOSED) {
           if (this.readyState == 4) { // and some other status
+            // dispatch error
+            eventsource.readyState = eventsource.CONNECTING;
+            eventsource.dispatchEvent('error', { type: 'error' });
             pollAgain(interval);
           } else if (this.readyState == 0) { // likely aborted
             pollAgain(interval);
+          } else {
           }
         }
       };
