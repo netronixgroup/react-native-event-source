@@ -103,7 +103,7 @@ var EventSource = function (url, options) {
           if (this.readyState == 4) { // and some other status
             // dispatch error
             eventsource.readyState = eventsource.CONNECTING;
-            eventsource.dispatchEvent('error', { type: 'error' });
+            eventsource.dispatchEvent('error', { type: 'error', status: this.status });
             pollAgain(interval);
           } else if (this.readyState == 0) { // likely aborted
             pollAgain(interval);
