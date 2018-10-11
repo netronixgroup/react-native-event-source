@@ -50,7 +50,7 @@ var EventSource = function (url, options) {
       if (lastEventId != null) xhr.setRequestHeader('Last-Event-ID', lastEventId);
       cache = '';
 
-      xhr.timeout = 50000;
+      xhr.timeout = 15*60*1000;
       xhr.onreadystatechange = function () {
         if (this.readyState == 3 || (this.readyState == 4 && this.status == 200)) {
           // on success
